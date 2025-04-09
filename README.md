@@ -10,11 +10,6 @@ The bot is designed to streamline document-based Q&A within Discord. It extracts
 
 ![alt text](/file/image.png)
 
-
-### Demo Video
-
-![alt text](file/demo.gif)
-
 ## Features
 
 - **PDF Upload**: Users can upload PDF documents directly to the bot via Discord.
@@ -31,6 +26,10 @@ The bot is designed to streamline document-based Q&A within Discord. It extracts
 - **Chroma**: Efficient storage and retrieval of document embeddings.
 - **Discord API**: Interaction with Discord for bot functionality.
 - **Python**: Core programming language for development.
+
+### Demo Video
+
+<video controls src="file/demo.mp4" title="Title"></video>
 
 ## Prerequisites
 
