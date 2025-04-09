@@ -1,0 +1,11 @@
+pypdf==3.17.4
+python-dotenv==1.0.0
+llama-index==0.9.27
+discord-py-interactions==5.11.0
+langchain_core
+langchain_community
+langgraph
+pdfplumber
+dotenv
+langchain_chroma
+langchain-openai

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  discord-bot:
+    # build: .
+    image: navong/discord-bot:latest
+    container_name: discord-bot
+    environment:
+      - DISCORD_BOT_TOKEN=${DISCORD_BOT_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    volumes:
+      - ./pdf:/app/pdf
+    env_file:
+      - .env
