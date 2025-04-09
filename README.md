@@ -10,6 +10,10 @@ The bot is designed to streamline document-based Q&A within Discord. It extracts
 
 ![alt text](/file/image.png)
 
+### Screenshort
+
+![alt text](image.png)
+
 ## Features
 
 - **PDF Upload**: Users can upload PDF documents directly to the bot via Discord.
