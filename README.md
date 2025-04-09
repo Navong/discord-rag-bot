@@ -6,6 +6,15 @@ This is a Discord bot that allows users to upload PDF documents, ask questions a
 
 The bot is designed to streamline document-based Q&A within Discord. It extracts text from uploaded PDFs, generates embeddings for efficient storage and retrieval, and processes user queries to deliver relevant responses. The project integrates cutting-edge technologies like LangChain for workflow orchestration, Open AI for text embedding and answer generation, and Chroma for managing document embeddings.
 
+### Workflow Diagram
+
+![alt text](/file/image.png)
+
+
+### Demo Video
+
+![alt text](file/demo.gif)
+
 ## Features
 
 - **PDF Upload**: Users can upload PDF documents directly to the bot via Discord.
@@ -74,10 +83,3 @@ python bot.py
 - Type: `/query` "What are the key points?"
 - Bot responds with relevant answers extracted from document.pdf.
 
-### Workflow Diagram
-
-![alt text](/file/image.png)
-
-### Demo Video
-
-<video controls src="file/demo.mov" title="demo"></video>
