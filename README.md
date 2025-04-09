@@ -29,7 +29,7 @@ The bot is designed to streamline document-based Q&A within Discord. It extracts
 
 ### Demo Video
 
-<video controls src="file/demo.mp4" title="Title"></video>
+Check out the demo video on YouTube: [Watch here](https://www.youtube.com/shorts/r9qdfko0Bnw)
 
 ## Prerequisites
 
