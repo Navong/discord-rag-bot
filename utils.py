@@ -10,7 +10,6 @@ from langchain_core.tools import tool
 import pdfplumber
 from dotenv import load_dotenv
 import os
-from langchain_community.vectorstores import FAISS
 from langchain_chroma import Chroma
 
 
@@ -18,7 +17,7 @@ from langchain_chroma import Chroma
 load_dotenv(override=True)
 os.environ['OPENAI_API_KEY']
 os.environ['GROQ_API_KEY']
-db_name = "./rag"
+db_name = "./chroma_db"
 
 # Setup vector store and embeddings
 embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
@@ -34,6 +33,8 @@ vector_store = Chroma(
     embedding_function=embeddings,
     persist_directory=db_name,  # Where to save data locally, remove if not necessary
 )
+
+
 
 async def update_index(file_path="./pdf/latest.pdf"):
     try:
@@ -52,13 +53,42 @@ async def update_index(file_path="./pdf/latest.pdf"):
 
         # Add chunks to vector store
         docs = [Document(page_content=chunk) for chunk in all_splits]
-        vector_store.add_documents(documents=docs)
+        vector_store.add_documents(documents=docs, ids='doc1')
+
 
         return [len(docs)]
     except Exception as e:
         print(f"[update_index error]: {e}")
         return None
 
+def reset_index():
+    """
+    Resets the Chroma vector store by deleting the 'my_collection' collection only.
+    Keeps the database directory intact.
+    """
+    global vector_store
+
+    try:
+        # Create a Chroma client without a specific collection
+        # client = Chroma(persist_directory=db_name, embedding_function=embeddings)
+        vector_store.delete(ids=["doc1"])
+
+        # Delete the collection by name
+        # client.delete_collection("my_collection")
+        print("Deleted collection: my_collection")
+    except Exception as e:
+        print(f"[reset_index error] Failed to delete collection: {e}")
+
+    try:
+        # Recreate the collection
+        vector_store = Chroma(
+            collection_name="my_collection",
+            embedding_function=embeddings,
+            persist_directory=db_name
+        )
+        print("Recreated vector store with collection: my_collection")
+    except Exception as e:
+        print(f"[reset_index error] Failed to recreate vector store: {e}")
 
 @tool(response_format="content_and_artifact")
 def retrieve_tool(query: str):

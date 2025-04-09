@@ -36,7 +36,7 @@ run:
 # Build and run locally
 .PHONY: up
 up: build
-	docker-compose up
+	docker-compose --env-file .env up -d
 
 # Stop and remove containers
 .PHONY: down

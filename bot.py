@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 import aiohttp
 from langchain_core.messages import SystemMessage, HumanMessage
-from utils import update_index, agent_executor
+from utils import update_index, agent_executor, reset_index
 
 load_dotenv()
 bot = Client(intents=Intents.ALL)
@@ -107,18 +107,18 @@ async def updated_database(ctx: SlashContext, file: File):
         response = f'Error updating index.'
     await ctx.send(response)
 
-# @slash_command(
-#     name="resetdb",
-#     description="Reset the vector store to empty",
-#     default_member_permissions=Permissions.ADMINISTRATOR  # 🛡️ Only admins
-# )
-# async def reset_database(ctx: SlashContext):
-#     await ctx.defer()
-#     try:
-#         reset_index()
-#         await ctx.send("The vector store has been reset.")
-#     except Exception as e:
-#         await ctx.send(f"Failed to reset DB: {e}")
+@slash_command(
+    name="resetdb",
+    description="Reset the vector store to empty",
+    default_member_permissions=Permissions.ADMINISTRATOR  # 🛡️ Only admins
+)
+async def reset_database(ctx: SlashContext):
+    await ctx.defer()
+    try:
+        reset_index()
+        await ctx.send("The vector store has been reset.")
+    except Exception as e:
+        await ctx.send(f"Failed to reset DB: {e}")
 
 # summarize
 @slash_command(name="summarize", description="Summarize the current document in the database.")
